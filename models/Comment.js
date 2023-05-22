@@ -1,17 +1,18 @@
 const { model, Schema } = require('mongoose')
-
-
-
-const comment Schema(
+const commentSchema = new Schema(
 
     {
+
         comment: String,
+
         author: { type: Schema.Types.ObjectId, ref: "User" }
+
     },
 
     {
 
         timestamps: true,
+
         timeseries: true
 
     }
