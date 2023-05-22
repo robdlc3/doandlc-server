@@ -46,20 +46,20 @@ router.get('/detail/:id', (req, res, next) => {
 
 router.post('/create', isAuthenticated, (req, res, next) => {
 
-    const { title, story, image, country } = req.body;
+    const { title, story, image, restaurant } = req.body;
 
     Post.create({
         title,
         story,
         image,
-        country,
+        Restaurant,
         author: req.user._id,
     })
         .then((createdPost) => {
             return createdPost
         })
         .then((toPopulate) => {
-            return toPopulate.populate("country author")
+            return toPopulate.populate("restaurant author")
         })
         .then((populated) => {
             res.json(populated)
@@ -99,8 +99,8 @@ router.get('/delete/:id', (req, res, next) => {
 
 router.post('/one-time/add-comment', (req, res, next) => {
     Comment.create({
-        comment: "hkjgkjhkjhkjh",
-        author: "hkjhkjhji"
+        comment: "Yooooooo",
+        author: "Walter White"
     })
         .then((results) => {
             console.log("one time", results.data)
