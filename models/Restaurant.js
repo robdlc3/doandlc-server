@@ -7,6 +7,7 @@ const restaurantSchema = new Schema(
         city: String,
         address: String,
         cuisine: String,
+        image: String,
     },
     {
         timestamps: true,

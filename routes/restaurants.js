@@ -7,9 +7,8 @@ const isAuthenticated = require('../middleware/isAuthenticated');
 router.post("/create", isAuthenticated, (req, res, next) => {
     console.log("req body", req.body);
 
-    Restaurant.findOne({ restaurant_id: req.body.restaurant_id })
+    Restaurant.findOne({ restaurantName: req.body.restaurantName })
         .then((foundRestaurant) => {
-            console.log("line 17");
             console.log("found RESTAURANT", foundRestaurant);
 
             if (foundRestaurant) {
@@ -44,7 +43,7 @@ router.post("/create", isAuthenticated, (req, res, next) => {
                     )
                         .populate('visitedRestaurants')
                         .then((updatedUser) => {
-                            res.json(updatedUser);
+                            res.json({ updatedUser, createdRestaurant });
                         })
                         .catch((err) => {
                             console.log(err);
@@ -67,7 +66,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/detail/:name', (req, res, next) => {
-    Restaurant.find({ commonName: req.params.name })
+    Restaurant.find({ restaurantName: req.params.name })
         .then((foundRestaurant) => {
             res.json(foundRestaurant)
         })
@@ -75,6 +74,4 @@ router.get('/detail/:name', (req, res, next) => {
             console.log(err)
         })
 })
-
-
 module.exports = router;
