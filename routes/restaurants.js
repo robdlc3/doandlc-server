@@ -56,6 +56,16 @@ router.post("/create", isAuthenticated, (req, res, next) => {
         });
 });
 
+router.get('/', (req, res, next) => {
+    Restaurant.find()
+        .then((foundRestaurant) => {
+            res.json(foundRestaurant)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+})
+
 router.get('/detail/:name', (req, res, next) => {
     Restaurant.find({ commonName: req.params.name })
         .then((foundRestaurant) => {

@@ -9,6 +9,7 @@ var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 var restaurantsRouter = require('./routes/restaurants');
 var postsRouter = require('./routes/posts');
+var photoRouter = require('./routes/photo')
 
 var app = express();
 
@@ -32,6 +33,7 @@ app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/restaurants', restaurantsRouter);
 app.use('/posts', postsRouter);
+app.use('/photo', photoRouter);
 
 mongoose
     .connect(process.env.MONGODB_URI)

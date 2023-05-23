@@ -46,20 +46,19 @@ router.get('/detail/:id', (req, res, next) => {
 
 router.post('/create', isAuthenticated, (req, res, next) => {
 
-    const { title, story, image, restaurant } = req.body;
+    const { title, story, image,  } = req.body;
 
     Post.create({
         title,
         story,
         image,
-        Restaurant,
         author: req.user._id,
     })
         .then((createdPost) => {
             return createdPost
         })
         .then((toPopulate) => {
-            return toPopulate.populate("restaurant author")
+            return toPopulate.populate("author")
         })
         .then((populated) => {
             res.json(populated)
