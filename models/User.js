@@ -12,8 +12,6 @@ const userSchema = new Schema(
             required: true,
         },
         fullName: String,
-        location: String,
-        age: Number,
         profilePic: {
             type: String,
             default: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR86ibcPPy-oWwnthhBJowpoG7UvaS_Cfysy0MGRDWsZA&s'
