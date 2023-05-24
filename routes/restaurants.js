@@ -65,9 +65,11 @@ router.get('/', (req, res, next) => {
         })
 })
 
-router.get('/detail/:name', (req, res, next) => {
-    Restaurant.find({ restaurantName: req.params.name })
+router.get('/detail/:id', (req, res, next) => {
+    console.log(req.params.id, "hi!")
+    Restaurant.find({ _id: req.params.id })
         .then((foundRestaurant) => {
+            console.log(foundRestaurant, "found restaurant!")
             res.json(foundRestaurant)
         })
         .catch((err) => {
