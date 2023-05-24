@@ -77,4 +77,27 @@ router.get('/detail/:id', (req, res, next) => {
             console.log(err)
         })
 })
+
+router.delete('/:id', isAuthenticated, (req, res, next) => {
+    Restaurant.findByIdAndDelete(req.params.id)
+        .then(() => {
+            // Delete the reference of the restaurant from users' visitedRestaurants array
+            User.updateMany(
+                { visitedRestaurants: req.params.id },
+                { $pull: { visitedRestaurants: req.params.id } }
+            )
+                .then(() => {
+                    res.json({ message: 'Restaurant deleted' });
+                })
+                .catch((err) => {
+                    console.log(err);
+                    next(err);
+                });
+        })
+        .catch((err) => {
+            console.log(err);
+            next(err);
+        });
+});
+
 module.exports = router;
