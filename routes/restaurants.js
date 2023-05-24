@@ -32,7 +32,7 @@ router.post("/create", isAuthenticated, (req, res, next) => {
 
             console.log("Can't find restaunt");
 
-            Restaurant.create(req.body)
+            Restaurant.create({ ...req.body, owner: req.user._id })
                 .then((createdRestaurant) => {
                     console.log(createdRestaurant, "RESTAURANT!")
                     User.findByIdAndUpdate(
@@ -75,6 +75,19 @@ router.get('/detail/:id', (req, res, next) => {
         })
         .catch((err) => {
             console.log(err)
+        })
+})
+
+router.post('/:id', isAuthenticated, (req, res, next) => {
+
+    Restaurant.findById(req.params.id)
+        .then((restaurant) => {
+            console.log("restaurante",restaurant.owner, "user", req.user._id)
+            if (String(restaurant.owner) === req.user._id) {
+                Restaurant.findByIdAndUpdate(restaurant._id, req.body, { new: true }).then((updatedRestaurant) => {
+                    res.status(200).json(updatedRestaurant)
+                })
+            } else { res.status(401).json({ msg: "You are not authorized" }) }
         })
 })
 

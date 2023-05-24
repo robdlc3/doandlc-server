@@ -1,8 +1,9 @@
-const { model, Schema } = require('mongoose');
+const { model, Schema, Types } = require('mongoose');
 
 const restaurantSchema = new Schema(
     {
         restaurantName: String,
+        owner: { type: Types.ObjectId, ref: "User" },
         country: String,
         city: String,
         address: String,
