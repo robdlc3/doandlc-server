@@ -34,6 +34,7 @@ router.post("/create", isAuthenticated, (req, res, next) => {
 
             Restaurant.create(req.body)
                 .then((createdRestaurant) => {
+                    console.log(createdRestaurant, "RESTAURANT!")
                     User.findByIdAndUpdate(
                         req.user._id,
                         {

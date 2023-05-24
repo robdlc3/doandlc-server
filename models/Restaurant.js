@@ -6,7 +6,8 @@ const restaurantSchema = new Schema(
         country: String,
         city: String,
         address: String,
-        cuisine: String,
+        review: String,
+        description: String,
         image: String,
     },
     {

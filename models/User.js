@@ -25,12 +25,3 @@ const userSchema = new Schema(
 );
 
 module.exports = model("User", userSchema);
-// Model:
-// Visited Countries(reference)
-// Email
-// Password
-// Location
-// Age
-// Full name
-// Profile pic(from selection - enum with set values, default value)
-// Countries(array of refs)
