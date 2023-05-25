@@ -24,7 +24,7 @@ app.enable('trust proxy');
 
 app.use(
     cors({
-        origin: ['https://main--boisterous-blini-4ea1ca.netlify.app']  // <== URL of our future React app
+        origin: ['https://doandlc.netlify.app/']  // <== URL of our future React app
     })
 );
 
