@@ -66,7 +66,7 @@ router.post('/create', isAuthenticated, (req, res, next) => {
 
 })
 
-router.post('/update/:id', (req, res, next) => {
+router.post('/:id', (req, res, next) => {
 
     Review.findByIdAndUpdate(req.params.id, req.body,
         {
