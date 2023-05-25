@@ -2,13 +2,10 @@ var express = require('express');
 var router = express.Router();
 
 const isAuthenticated = require('../middleware/isAuthenticated')
-
 const Review = require('../models/Review')
-
 const Comment = require('../models/Comment')
 
 router.get('/', (req, res, next) => {
-
     Review.find()
         .populate("restaurant author reviews") // Added "reviews" field to populate
         .populate({
@@ -22,7 +19,6 @@ router.get('/', (req, res, next) => {
         .catch((err) => {
             console.log(err);
         });
-
 })
 
 router.get('/detail/:id', (req, res, next) => {
@@ -45,9 +41,7 @@ router.get('/detail/:id', (req, res, next) => {
 })
 
 router.post('/create', isAuthenticated, (req, res, next) => {
-
     const { title, story, image } = req.body;
-
     Review.create({
         title,
         story,
@@ -63,7 +57,6 @@ router.post('/create', isAuthenticated, (req, res, next) => {
         .catch((err) => {
             console.log(err);
         });
-
 })
 
 router.post('/:id', (req, res, next) => {
@@ -97,24 +90,28 @@ router.get('/delete/:id', (req, res, next) => {
 router.post('/add-review/:id', isAuthenticated, (req, res, next) => {
     const { review } = req.body;
     const { id } = req.params;
-
+    console.log(req.body, "yoooo!")
     Review.create({
-        review,
+        ...req.body,
         author: req.user._id
     })
         .then((createdReview) => {
+            console.log(createdReview, "hello!")
             return Review.findByIdAndUpdate(
-                id,
-                { $push: { reviews: createdReview._id } },
+                createdReview._id,
+                req.body,
                 { new: true }
             )
                 .populate('reviews')
                 .populate({
                     path: 'reviews',
                     populate: { path: 'author' }
-                });
+                }).then((updatedReview) => {
+                    res.json(updatedReview)
+                })
         })
         .then((updatedReview) => {
+            console.log({ updatedReview })
             res.json(updatedReview);
         })
         .catch((err) => {

@@ -7,7 +7,7 @@ const reviewSchema = new Schema(
         image: String,
         restaurant: { type: Schema.Types.ObjectId, ref: "Restaurant" },
         author: { type: Schema.Types.ObjectId, ref: "User" },
-        reviews: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
+        reviews: String,
         likes: [{ type: Schema.Types.ObjectId, ref: "User" }]
     },
     {
