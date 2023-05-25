@@ -8,7 +8,7 @@ var cors = require('cors')
 var usersRouter = require('./routes/users');
 var authRouter = require('./routes/auth');
 var restaurantsRouter = require('./routes/restaurants');
-var postsRouter = require('./routes/posts');
+var reviewsRouter = require('./routes/reviews');
 var photoRouter = require('./routes/photo')
 
 var app = express();
@@ -32,7 +32,7 @@ app.use(
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/restaurants', restaurantsRouter);
-app.use('/posts', postsRouter);
+app.use('/reviews', reviewsRouter);
 app.use('/photo', photoRouter);
 
 mongoose

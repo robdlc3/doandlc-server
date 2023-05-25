@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const fileUploader = require("../middleware/cloudinary")
 
 const User = require('../models/User')
-const Post = require('../models/Post')
+// const Post = require('../models/Post')
 
 router.get('/details/:id', (req, res, next) => {
 
@@ -58,16 +58,16 @@ router.post('/imageUpload', fileUploader.single("image"), (req, res, next) => {
 
 })
 
-router.get('/posts/:id', (req, res, next) => {
+// router.get('/posts/:id', (req, res, next) => {
 
-  Post.find({ author: req.params.id })
-    .then((foundPosts) => {
-      res.json(foundPosts)
-    })
-    .catcj((err) => {
-      console.log(err)
-    })
+//   Post.find({ author: req.params.id })
+//     .then((foundPosts) => {
+//       res.json(foundPosts)
+//     })
+//     .catcj((err) => {
+//       console.log(err)
+//     })
 
-})
+// })
 
 module.exports = router;
