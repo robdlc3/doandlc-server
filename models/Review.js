@@ -1,13 +1,13 @@
 const { model, Schema } = require('mongoose')
 
-const postSchema = new Schema(
+const reviewSchema = new Schema(
     {
         title: String,
         story: String,
         image: String,
         restaurant: { type: Schema.Types.ObjectId, ref: "Restaurant" },
         author: { type: Schema.Types.ObjectId, ref: "User" },
-        comments: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
+        reviews: [{ type: Schema.Types.ObjectId, ref: "Comment" }],
         likes: [{ type: Schema.Types.ObjectId, ref: "User" }]
     },
     {
@@ -16,4 +16,4 @@ const postSchema = new Schema(
     }
 )
 
-module.exports = model("Post", postSchema)
+module.exports = model("Review", reviewSchema)
