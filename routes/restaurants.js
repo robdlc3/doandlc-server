@@ -91,6 +91,7 @@ router.post('/:id', isAuthenticated, (req, res, next) => {
         })
 })
 
+
 router.delete('/:id', isAuthenticated, (req, res, next) => {
     Restaurant.findByIdAndDelete(req.params.id)
         .then(() => {
@@ -112,6 +113,7 @@ router.delete('/:id', isAuthenticated, (req, res, next) => {
             next(err);
         });
 });
+
 
 
 
