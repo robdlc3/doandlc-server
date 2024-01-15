@@ -20,6 +20,8 @@ router.get('/details/:id', (req, res, next) => {
 
 })
 
+
+
 router.post('/update/:id', fileUploader.single("profilePic"), (req, res, next) => {
 
   User.findByIdAndUpdate(req.params.id, req.body, { new: true })
