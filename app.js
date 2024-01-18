@@ -28,8 +28,6 @@ app.use(
     })
 );
 
-
-
 app.use('/users', usersRouter);
 app.use('/auth', authRouter);
 app.use('/restaurants', restaurantsRouter);

@@ -14,5 +14,4 @@ router.post('/', fileUploader.single("image"), (req, res, next) => {
 
 })
 
-
 module.exports = router;
